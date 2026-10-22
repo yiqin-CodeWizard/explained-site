@@ -1,11 +1,33 @@
-# Explained — Curiosity Club
+# Explained
 
-[Visit the website](https://yiqin-codewizard.github.io/explained-site/)
+**Highlight a phrase. Understand it in context. Keep reading.**
 
-The public landing page for Explained, a Chrome reading companion. Try three original practice articles in English, 简体中文, 繁體中文, or Mixed (English with Chinese terminology and sample explanations).
+[Visit Explained](https://yiqin-codewizard.github.io/explained-site/) · [Try a practice article](https://yiqin-codewizard.github.io/explained-site/#practice)
 
-This repository contains the generated static website and its intended extension download. GitHub Pages serves the root of `main`; `.nojekyll` preserves the prebuilt HTML and assets. The extension is an experimental unpacked Chrome extension, not a Chrome Web Store listing. Installation instructions and privacy information are on the website.
+## Why I built Explained
 
-The ZIP in `downloads/` includes its corresponding extension source, license and privacy policy. A SHA-256 checksum is provided alongside it. Opening the website or a sample explanation does not contact DeepSeek.
+I built Explained to make unfamiliar text easier to understand without losing my place in a good read.
 
-For future updates, regenerate the website from the maintained source project, verify the build and download, and replace the generated files here. Do not copy local settings, account information, validation evidence, or private project history into this public repository.
+Reading about a new subject often brings unfamiliar concepts, technical terms, and acronyms. Each one can become a detour: leave the article, look it up, then find the thread again.
+
+AI can help explain those phrases, and I wanted that help beside the original text. The idea behind Explained is deliberately small: **explain this bit, please. Let me get back to reading.**
+
+So I made a small Chrome extension. Highlight a word or phrase, read an explanation beside the original text, and carry on. Nearby context can help clarify the meaning; a News tab lets you follow the subject further when you're curious.
+
+Explained is for people with the same reading habits: students working through unfamiliar material, analysts exploring a new industry, and researchers following an idea across subjects. The aim is to make a moment of confusion easier to get past, while keeping the reader's attention on the text.
+
+## Try it
+
+Visit the [landing page](https://yiqin-codewizard.github.io/explained-site/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three original practice articles about energy efficiency, price perception, and choice overload.
+
+The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight any phrase in an article to try it.
+
+This is an experimental extension loaded through Chrome's **Load unpacked** option. It uses your DeepSeek website session; no official paid API key is required. DeepSeek's own usage limits still apply. With lookups enabled, highlighting sends the selected text and any enabled nearby context to DeepSeek. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
+
+## About this repository
+
+This is the public repository for the landing page, its practice articles, and the intended extension download. The landing page's **Source on GitHub** links lead here.
+
+GitHub Pages serves the generated static files from the root of `main`. The ZIP in [`downloads/`](downloads/) includes the corresponding extension source, license, and privacy policy, with a SHA-256 checksum alongside it.
+
+Explained is an independent project, with no affiliation with DeepSeek or Google. If something feels clunky, an explanation misses the point, or you have an idea that would make reading easier, [open an issue](https://github.com/yiqin-CodeWizard/explained-site/issues).
