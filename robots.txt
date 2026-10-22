@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yiqin-codewizard.github.io/explained-site/sitemap.xml
