@@ -22,7 +22,7 @@ Visit the [landing page](https://yiqin-codewizard.github.io/explained-site/) for
 
 The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight any phrase in an article to try it.
 
-This is an experimental extension loaded through Chrome's **Load unpacked** option. It uses your DeepSeek website session; no official paid API key is required. DeepSeek's own usage limits still apply. With lookups enabled, highlighting sends the selected text and any enabled nearby context to DeepSeek. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
+This is an experimental extension loaded through Chrome's **Load unpacked** option. It uses your DeepSeek website session; no official paid API key is required. DeepSeek's own usage limits still apply. With lookups enabled, highlighting sends the selected text and any enabled nearby context to DeepSeek. The shared privacy notice distinguishes Explained, Explained Yellow and extension-wasm-offline, including website authentication and each computation route. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
 
 ## About this repository
 
