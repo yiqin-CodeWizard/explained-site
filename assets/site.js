@@ -35,7 +35,6 @@
     if (focus) document.querySelector(`#title-${key}`).focus({ preventScroll: true });
   }
   showArticle(current);
-  document.querySelectorAll('[data-term-previews]').forEach(group => { group.hidden = false; });
   topics.forEach(link => link.addEventListener('click', event => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
@@ -51,13 +50,6 @@
     const key = url.hash.replace('#article-', '');
     showArticle(knownTopic(key) ? key : knownTopic(url.searchParams.get('topic')) ? url.searchParams.get('topic') : document.documentElement.dataset.defaultTopic);
   });
-  document.querySelectorAll('[data-term]').forEach(button => button.addEventListener('click', () => {
-    const article = button.closest('[data-article]');
-    const index = button.dataset.term;
-    article.querySelectorAll('[data-term]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    article.querySelector('.inline-preview').hidden = false;
-    article.querySelectorAll('[data-sample]').forEach(sample => { sample.hidden = sample.dataset.sample !== index; });
-  }));
   if (query.get('entry') === 'welcome') {
     document.querySelector('[data-welcome]').hidden = false;
     requestAnimationFrame(() => {
