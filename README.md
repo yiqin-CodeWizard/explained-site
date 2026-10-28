@@ -24,6 +24,8 @@ The page is available in English, 简体中文, 繁體中文, and Mixed: English
 
 The default download is **extension-wasm-offline v0.2.0**, the Explained API edition, loaded through Chrome's **Load unpacked** option. It requires internet access and your own **DeepSeek API key**. Model and search calls are billed to your DeepSeek API account. Setup verifies the key before enabling lookups. Triggered lookups send selected text and optional nearby context to DeepSeek's official APIs; News, time-sensitive queries and Explain a little more also use web search. The key and preferences stay in local extension storage. The shared privacy notice distinguishes the API edition from the earlier website editions. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
 
+Need help? Read the [troubleshooting guide](https://yiqin-codewizard.github.io/explained-site/help/) or [set up a DeepSeek API key](https://yiqin-codewizard.github.io/explained-site/guides/deepseek-api-key/).
+
 ## About this repository
 
 This is the public repository for the landing page, its practice articles, and the intended extension download. The landing page's **Source on GitHub** links lead here.
