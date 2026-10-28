@@ -20,9 +20,9 @@ Explained is for people with the same reading habits: students working through u
 
 Visit the [landing page](https://yiqin-codewizard.github.io/explained-site/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three short research readings adapted from Anthropic, OpenAI, and DeepSeek, with original-source links and translated Chinese editions.
 
-The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight any phrase in an article to try it.
+The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight a phrase, then click the selection icon or press Ctrl+X (⌘X on Mac). Selecting or copying alone sends nothing.
 
-This is an experimental extension loaded through Chrome's **Load unpacked** option. It uses your DeepSeek website session; no official paid API key is required. DeepSeek's own usage limits still apply. With lookups enabled, highlighting sends the selected text and any enabled nearby context to DeepSeek. The shared privacy notice distinguishes Explained, Explained Yellow and extension-wasm-offline, including website authentication and each computation route. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
+The default download is **extension-wasm-offline v0.2.0**, the Explained API edition, loaded through Chrome's **Load unpacked** option. It requires internet access and your own **DeepSeek API key**. Model and search calls are billed to your DeepSeek API account. Setup verifies the key before enabling lookups. Triggered lookups send selected text and optional nearby context to DeepSeek's official APIs; News, time-sensitive queries and Explain a little more also use web search. The key and preferences stay in local extension storage. The shared privacy notice distinguishes the API edition from the earlier website editions. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
 
 ## About this repository
 
