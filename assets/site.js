@@ -5,8 +5,11 @@
   const articles = [...document.querySelectorAll('[data-article]')];
   const query = new URLSearchParams(location.search);
   const knownTopic = key => articles.some(article => article.dataset.article === key);
-  const hashTopic = location.hash.replace('#article-', '');
-  let current = knownTopic(hashTopic) ? hashTopic : knownTopic(query.get('topic')) ? query.get('topic') : document.documentElement.dataset.defaultTopic;
+  const topicAliases = { energy: 'drug-development', pricing: 'scientific-understanding', choices: 'deepseek-v4' };
+  const resolveTopic = key => topicAliases[key] || key;
+  const hashTopic = resolveTopic(location.hash.replace('#article-', ''));
+  const queryTopic = resolveTopic(query.get('topic'));
+  let current = knownTopic(hashTopic) ? hashTopic : knownTopic(queryTopic) ? queryTopic : document.documentElement.dataset.defaultTopic;
   function updateLanguageLinks() {
     document.querySelectorAll('[data-language-link]').forEach(link => {
       const url = new URL(link.getAttribute('href'), location.href);
@@ -41,14 +44,15 @@
     showArticle(link.dataset.topic, true, true);
   }));
   window.addEventListener('hashchange', () => {
-    const key = location.hash.replace('#article-', '');
+    const key = resolveTopic(location.hash.replace('#article-', ''));
     if (knownTopic(key)) showArticle(key);
     else updateLanguageLinks();
   });
   window.addEventListener('popstate', () => {
     const url = new URL(location.href);
-    const key = url.hash.replace('#article-', '');
-    showArticle(knownTopic(key) ? key : knownTopic(url.searchParams.get('topic')) ? url.searchParams.get('topic') : document.documentElement.dataset.defaultTopic);
+    const key = resolveTopic(url.hash.replace('#article-', ''));
+    const topic = resolveTopic(url.searchParams.get('topic'));
+    showArticle(knownTopic(key) ? key : knownTopic(topic) ? topic : document.documentElement.dataset.defaultTopic);
   });
   if (query.get('entry') === 'welcome') {
     document.querySelector('[data-welcome]').hidden = false;
