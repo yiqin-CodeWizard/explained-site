@@ -366,3 +366,16 @@ html[lang^=zh] h1, html[lang^=zh] .section-title, html[lang^=zh] .article-sheet 
   .document-prose h2 { font-size: 24px; }
   .document-prose p, .document-prose li { font-size: 14px; }
 }
+
+.guide-tiles { padding-bottom: 25px; }
+.guide-tiles .reading-tile h2 { font: 600 29px/1.2 var(--serif); margin: 0 0 18px; }
+.main-nav { gap: 24px; }
+.document-prose figure > a { display: block; }
+@media (max-width: 900px) { .main-nav { gap: 16px; } }
+@media (max-width: 380px) { .main-nav { gap: 10px; } .main-nav a { font-size: 10px; } }
+
+.capabilities { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 28px; }
+.capability-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 40px; }
+.capability-grid h3 { font-size: 17px; margin: 0 0 10px; }
+.capability-grid p { font-size: 13px; line-height: 1.85; color: var(--muted); margin: 0; }
+@media (max-width: 700px) { .capability-grid { grid-template-columns: 1fr; gap: 24px; } }

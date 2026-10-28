@@ -26,6 +26,8 @@ The default download is **extension-wasm-offline v0.2.0**, the Explained API edi
 
 Need help? Read the [troubleshooting guide](https://yiqin-codewizard.github.io/explained-site/help/) or [set up a DeepSeek API key](https://yiqin-codewizard.github.io/explained-site/guides/deepseek-api-key/).
 
+Explore the [reading guides](https://yiqin-codewizard.github.io/explained-site/guides/) for research and context workflows. See [versions and manual updates](https://yiqin-codewizard.github.io/explained-site/changelog/) before updating an unpacked extension.
+
 ## About this repository
 
 This is the public repository for the landing page, its practice articles, and the intended extension download. The landing page's **Source on GitHub** links lead here.
