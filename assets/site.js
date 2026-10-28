@@ -1,81 +1,72 @@
-/* Progressive enhancement only. Content, navigation and downloads are ordinary HTML. */
+/* Static pages remain readable without JavaScript. This adds article state and legacy navigation. */
 (() => {
   'use strict';
+  const root = document.documentElement;
+  const aliases = { energy: 'drug-development', pricing: 'scientific-understanding', choices: 'deepseek-v4' };
+  const topicKeys = ['drug-development', 'scientific-understanding', 'deepseek-v4'];
+  const resolveTopic = key => Object.hasOwn(aliases, key) ? aliases[key] : key;
+  const known = key => topicKeys.includes(key);
+  function state() {
+    const query = new URLSearchParams(location.search);
+    const hash = resolveTopic(location.hash.replace('#article-', ''));
+    const topic = resolveTopic(query.get('topic'));
+    return { topic: known(hash) ? hash : known(topic) ? topic : root.dataset.defaultTopic, explicit: known(hash) || known(topic), welcome: query.get('entry') === 'welcome' };
+  }
+  function legacyEntry() {
+    if (root.dataset.page !== 'home') return false;
+    const selected = state();
+    if (!selected.explicit && !selected.welcome) return false;
+    const target = new URL(root.dataset.tryUrl, location.href);
+    target.searchParams.set('topic', selected.topic);
+    if (selected.welcome) target.searchParams.set('entry', 'welcome');
+    target.hash = selected.welcome ? 'practice' : `article-${selected.topic}`;
+    location.replace(target.href);
+    return true;
+  }
+  if (legacyEntry()) return;
   const topics = [...document.querySelectorAll('[data-topic]')];
   const articles = [...document.querySelectorAll('[data-article]')];
-  const query = new URLSearchParams(location.search);
-  const knownTopic = key => articles.some(article => article.dataset.article === key);
-  const topicAliases = { energy: 'drug-development', pricing: 'scientific-understanding', choices: 'deepseek-v4' };
-  const resolveTopic = key => topicAliases[key] || key;
-  const hashTopic = resolveTopic(location.hash.replace('#article-', ''));
-  const queryTopic = resolveTopic(query.get('topic'));
-  let current = knownTopic(hashTopic) ? hashTopic : knownTopic(queryTopic) ? queryTopic : document.documentElement.dataset.defaultTopic;
-  function updateLanguageLinks() {
-    document.querySelectorAll('[data-language-link]').forEach(link => {
-      const url = new URL(link.getAttribute('href'), location.href);
-      url.searchParams.set('topic', current);
-      if (query.get('entry') === 'welcome') url.searchParams.set('entry', 'welcome');
-      url.hash = location.hash;
-      link.href = url.href;
-    });
-  }
-  function showArticle(key, focus = false, updateURL = false) {
-    if (!knownTopic(key)) return;
-    current = key;
-    articles.forEach(article => { article.hidden = article.dataset.article !== key; });
+  function showArticle(focus = false) {
+    if (!articles.length) return;
+    const selected = state();
+    articles.forEach(article => { article.hidden = article.dataset.article !== selected.topic; });
     topics.forEach(link => {
-      if (link.dataset.topic === key) link.setAttribute('aria-current', 'true');
+      if (link.dataset.topic === selected.topic) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
     });
-    if (updateURL) {
-      const url = new URL(location.href);
-      url.searchParams.set('topic', key);
-      // The URL points to a real anchor and still works when JavaScript is disabled.
-      url.hash = `article-${key}`;
-      history.replaceState(null, '', url);
-    }
-    updateLanguageLinks();
-    if (focus) document.querySelector(`#title-${key}`).focus({ preventScroll: true });
+    document.querySelectorAll('[data-language-link]').forEach(link => {
+      link.dataset.baseHref ||= link.getAttribute('href');
+      const target = new URL(link.dataset.baseHref, location.href);
+      target.searchParams.set('topic', selected.topic);
+      if (selected.welcome) target.searchParams.set('entry', 'welcome');
+      target.hash = selected.welcome ? 'practice' : `article-${selected.topic}`;
+      link.href = target.href;
+    });
+    const banner = document.querySelector('[data-welcome]');
+    if (banner) banner.hidden = !selected.welcome;
+    if (focus) document.getElementById(`title-${selected.topic}`)?.focus({ preventScroll: true });
   }
-  showArticle(current);
+  showArticle();
+  if (articles.length && state().welcome) requestAnimationFrame(() => {
+    document.getElementById('welcome-title')?.focus({ preventScroll: true });
+    document.getElementById('practice')?.scrollIntoView({ behavior: 'instant' });
+  });
   topics.forEach(link => link.addEventListener('click', event => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    showArticle(link.dataset.topic, true, true);
+    const target = new URL(location.href);
+    target.searchParams.set('topic', link.dataset.topic);
+    target.hash = `article-${link.dataset.topic}`;
+    if (target.href !== location.href) history.pushState(null, '', target);
+    showArticle(true);
   }));
-  window.addEventListener('hashchange', () => {
-    const key = resolveTopic(location.hash.replace('#article-', ''));
-    if (knownTopic(key)) showArticle(key);
-    else updateLanguageLinks();
-  });
-  window.addEventListener('popstate', () => {
-    const url = new URL(location.href);
-    const key = resolveTopic(url.hash.replace('#article-', ''));
-    const topic = resolveTopic(url.searchParams.get('topic'));
-    showArticle(knownTopic(key) ? key : knownTopic(topic) ? topic : document.documentElement.dataset.defaultTopic);
-  });
-  if (query.get('entry') === 'welcome') {
-    document.querySelector('[data-welcome]').hidden = false;
-    requestAnimationFrame(() => {
-      const welcome = document.getElementById('welcome-title');
-      welcome.focus({ preventScroll: true });
-      document.getElementById('practice').scrollIntoView({ behavior: 'instant' });
+  window.addEventListener('popstate', () => { if (!legacyEntry()) showArticle(); });
+  window.addEventListener('hashchange', () => { if (!legacyEntry()) showArticle(); });
+  const menu = document.querySelector('.language-menu');
+  if (menu) {
+    document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
+    menu.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); }
     });
   }
-  const dialog = document.querySelector('.install-dialog');
-  let opener;
-  if (typeof dialog.showModal === 'function') {
-    document.querySelectorAll('[data-open-install]').forEach(link => link.addEventListener('click', event => {
-      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      opener = link;
-      dialog.showModal();
-    }));
-    dialog.querySelector('[data-close-install]').addEventListener('click', () => dialog.close());
-    dialog.addEventListener('close', () => { if (opener?.isConnected) opener.focus({ preventScroll: true }); });
-  }
-  // Escape and outside clicks close the language menu without trapping navigation.
-  const menu = document.querySelector('.language-menu');
-  document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
-  menu.addEventListener('keydown', event => { if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); } });
 })();

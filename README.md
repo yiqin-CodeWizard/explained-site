@@ -2,7 +2,7 @@
 
 **Highlight a phrase. Understand it in context. Keep reading.**
 
-[Visit Explained](https://yiqin-codewizard.github.io/explained-site/) · [Try a practice article](https://yiqin-codewizard.github.io/explained-site/#practice)
+[Visit Explained](https://yiqin-codewizard.github.io/explained-site/) · [Try a practice article](https://yiqin-codewizard.github.io/explained-site/try/)
 
 ## Why I built Explained
 
@@ -18,7 +18,7 @@ Explained is for people with the same reading habits: students working through u
 
 ## Try it
 
-Visit the [landing page](https://yiqin-codewizard.github.io/explained-site/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three short research readings adapted from Anthropic, OpenAI, and DeepSeek, with original-source links and translated Chinese editions.
+Visit the [download and setup page](https://yiqin-codewizard.github.io/explained-site/download/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three short research readings adapted from Anthropic, OpenAI, and DeepSeek, with original-source links and translated Chinese editions.
 
 The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight a phrase, then click the selection icon or press Ctrl+X (⌘X on Mac). Selecting or copying alone sends nothing.
 
