@@ -1,4 +1,4 @@
-/* Static pages remain readable without JavaScript. This adds article state and legacy navigation. */
+/* Static pages remain readable without JavaScript. The home and reading-room views share article state. */
 (() => {
   'use strict';
   const root = document.documentElement;
@@ -12,18 +12,6 @@
     const topic = resolveTopic(query.get('topic'));
     return { topic: known(hash) ? hash : known(topic) ? topic : root.dataset.defaultTopic, explicit: known(hash) || known(topic), welcome: query.get('entry') === 'welcome' };
   }
-  function legacyEntry() {
-    if (root.dataset.page !== 'home') return false;
-    const selected = state();
-    if (!selected.explicit && !selected.welcome) return false;
-    const target = new URL(root.dataset.tryUrl, location.href);
-    target.searchParams.set('topic', selected.topic);
-    if (selected.welcome) target.searchParams.set('entry', 'welcome');
-    target.hash = selected.welcome ? 'practice' : `article-${selected.topic}`;
-    location.replace(target.href);
-    return true;
-  }
-  if (legacyEntry()) return;
   const topics = [...document.querySelectorAll('[data-topic]')];
   const articles = [...document.querySelectorAll('[data-article]')];
   function showArticle(focus = false) {
@@ -37,9 +25,11 @@
     document.querySelectorAll('[data-language-link]').forEach(link => {
       link.dataset.baseHref ||= link.getAttribute('href');
       const target = new URL(link.dataset.baseHref, location.href);
-      target.searchParams.set('topic', selected.topic);
-      if (selected.welcome) target.searchParams.set('entry', 'welcome');
-      target.hash = selected.welcome ? 'practice' : `article-${selected.topic}`;
+      if (root.dataset.page !== 'home' || selected.explicit || selected.welcome) {
+        target.searchParams.set('topic', selected.topic);
+        if (selected.welcome) target.searchParams.set('entry', 'welcome');
+        target.hash = selected.welcome ? 'practice' : `article-${selected.topic}`;
+      } else if (location.hash === '#practice') target.hash = 'practice';
       link.href = target.href;
     });
     const banner = document.querySelector('[data-welcome]');
@@ -51,6 +41,9 @@
     document.getElementById('welcome-title')?.focus({ preventScroll: true });
     document.getElementById('practice')?.scrollIntoView({ behavior: 'instant' });
   });
+  if (articles.length && state().explicit && location.hash.startsWith('#article-') && !document.getElementById(location.hash.slice(1))) {
+    requestAnimationFrame(() => document.getElementById(`article-${state().topic}`)?.scrollIntoView({ behavior: 'instant' }));
+  }
   topics.forEach(link => link.addEventListener('click', event => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
@@ -60,8 +53,8 @@
     if (target.href !== location.href) history.pushState(null, '', target);
     showArticle(true);
   }));
-  window.addEventListener('popstate', () => { if (!legacyEntry()) showArticle(); });
-  window.addEventListener('hashchange', () => { if (!legacyEntry()) showArticle(); });
+  window.addEventListener('popstate', () => showArticle());
+  window.addEventListener('hashchange', () => showArticle());
   const menu = document.querySelector('.language-menu');
   if (menu) {
     document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
