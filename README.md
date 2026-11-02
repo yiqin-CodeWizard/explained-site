@@ -2,7 +2,7 @@
 
 **Highlight a phrase. Understand it in context. Keep reading.**
 
-[Visit Explained](https://yiqin-codewizard.github.io/explained-site/) · [Try a practice article](https://yiqin-codewizard.github.io/explained-site/try/)
+[Visit Explained](https://www.utopia-ft.com/) · [Try a practice article](https://www.utopia-ft.com/try/)
 
 ## Why I built Explained
 
@@ -18,15 +18,15 @@ Explained is for people with the same reading habits: students working through u
 
 ## Try it
 
-Visit the [download and setup page](https://yiqin-codewizard.github.io/explained-site/download/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three short research readings adapted from Anthropic, OpenAI, and DeepSeek, with original-source links and translated Chinese editions.
+Visit the [download and setup page](https://www.utopia-ft.com/download/) for installation instructions and the extension download. The **Pick a story. Find a new idea.** section has three short research readings adapted from Anthropic, OpenAI, and DeepSeek, with original-source links and translated Chinese editions.
 
 The page is available in English, 简体中文, 繁體中文, and Mixed: English articles with selected Chinese terms. After enabling lookups in the installed extension, highlight a phrase, then click the selection icon or press Ctrl+X (⌘X on Mac). Selecting or copying alone sends nothing.
 
-The default download is **extension-wasm-offline v0.2.0**, the Explained API edition, loaded through Chrome's **Load unpacked** option. It requires internet access and your own **DeepSeek API key**. Model and search calls are billed to your DeepSeek API account. Setup verifies the key before enabling lookups. Triggered lookups send selected text and optional nearby context to DeepSeek's official APIs; News, time-sensitive queries and Explain a little more also use web search. The key and preferences stay in local extension storage. The shared privacy notice distinguishes the API edition from the earlier website editions. Read the [privacy notice](https://yiqin-codewizard.github.io/explained-site/privacy.html) before enabling lookups.
+The default download is **extension-wasm-offline v0.2.0**, the Explained API edition, loaded through Chrome's **Load unpacked** option. It requires internet access and your own **DeepSeek API key**. Model and search calls are billed to your DeepSeek API account. Setup verifies the key before enabling lookups. Triggered lookups send selected text and optional nearby context to DeepSeek's official APIs; News, time-sensitive queries and Explain a little more also use web search. The key and preferences stay in local extension storage. The shared privacy notice distinguishes the API edition from the earlier website editions. Read the [privacy notice](https://www.utopia-ft.com/privacy.html) before enabling lookups.
 
-Need help? Read the [troubleshooting guide](https://yiqin-codewizard.github.io/explained-site/help/) or [set up a DeepSeek API key](https://yiqin-codewizard.github.io/explained-site/guides/deepseek-api-key/).
+Need help? Read the [troubleshooting guide](https://www.utopia-ft.com/help/) or [set up a DeepSeek API key](https://www.utopia-ft.com/guides/deepseek-api-key/).
 
-Explore the [reading guides](https://yiqin-codewizard.github.io/explained-site/guides/) for research and context workflows. See [versions and manual updates](https://yiqin-codewizard.github.io/explained-site/changelog/) before updating an unpacked extension.
+Explore the [reading guides](https://www.utopia-ft.com/guides/) for research and context workflows. See [versions and manual updates](https://www.utopia-ft.com/changelog/) before updating an unpacked extension.
 
 ## About this repository
 
