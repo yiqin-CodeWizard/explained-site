@@ -379,3 +379,5 @@ html[lang^=zh] h1, html[lang^=zh] .section-title, html[lang^=zh] .article-sheet 
 .capability-grid h3 { font-size: 17px; margin: 0 0 10px; }
 .capability-grid p { font-size: 13px; line-height: 1.85; color: var(--muted); margin: 0; }
 @media (max-width: 700px) { .capability-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+.site-footer .site-identity { max-width: 42ch; margin-top: 12px; line-height: 1.8; }

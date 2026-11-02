@@ -2,6 +2,8 @@
 
 **Highlight a phrase. Understand it in context. Keep reading.**
 
+utopia-ft.com is the official website of Explained, an AI reading assistant for Chrome.
+
 [Visit Explained](https://www.utopia-ft.com/) · [Try a practice article](https://www.utopia-ft.com/try/)
 
 ## Why I built Explained
