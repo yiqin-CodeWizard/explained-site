@@ -4,7 +4,7 @@
 
 utopia-ft.com is the official website of Explained, an AI reading assistant for Chrome.
 
-[Visit Explained](https://www.utopia-ft.com/) · [Try a practice article](https://www.utopia-ft.com/try/)
+[Visit Explained](https://www.utopia-ft.com/) · [Try a practice article](https://www.utopia-ft.com/try/) · [Open-source code](https://github.com/yiqin-CodeWizard/explained)
 
 ## Why I built Explained
 
@@ -32,7 +32,7 @@ Explore the [reading guides](https://www.utopia-ft.com/guides/) for research and
 
 ## About this repository
 
-This is the public repository for the landing page, its practice articles, and the intended extension download. The landing page's **Source on GitHub** links lead here.
+This repository publishes the website, its practice articles, and the intended extension download. The extension and website source are available under the MIT license in [yiqin-CodeWizard/explained](https://github.com/yiqin-CodeWizard/explained); the website's **GitHub** and **Source on GitHub** links lead to that source repository.
 
 GitHub Pages serves the generated static files from the root of `main`. The ZIP in [`downloads/`](downloads/) includes the corresponding extension source, license, and privacy policy, with a SHA-256 checksum alongside it.
 
